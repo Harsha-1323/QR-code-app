@@ -1,0 +1,5 @@
+Flask
+qrcode
+pyzbar
+Pillow
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Code Generator & Scanner</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h2>QR Code Generator</h2>
+  <form method="POST" action="/generate">
+    <input type="text" name="qr-data" placeholder="Enter text or URL" required>
+    <button type="submit">Generate</button>
+  </form>
+
+  {% if result == 'generated' %}
+    <h3>Generated QR Code:</h3>
+    <img src="{{ qr_image }}" alt="QR Code" width="200">
+  {% endif %}
+
+  <hr>
+
+  <h2>QR Code Scanner</h2>
+  <form method="POST" action="/scan" enctype="multipart/form-data">
+    <input type="file" name="qr-image" accept="image/*" required>
+    <button type="submit">Scan</button>
+  </form>
+
+  {% if result == 'scanned' %}
+    <h3>Scanned QR Code Text:</h3>
+    <p>{{ qr_text }}</p>
+  {% endif %}
+</body>
+</html>
+
